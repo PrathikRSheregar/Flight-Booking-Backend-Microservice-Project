@@ -1,5 +1,4 @@
-require("dotenv").config();
-module.exports=
-{
+require('dotenv').config({ path: '../.env' });
+module.exports = {
     PORT:process.env.PORT
-};
+}

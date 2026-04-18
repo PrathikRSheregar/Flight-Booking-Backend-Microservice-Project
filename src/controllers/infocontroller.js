@@ -1,6 +1,9 @@
-const info=(req,response)=>{
-    response.status(statuscode.ok).send("api is alive");
-}
-module.exports={
+const { StatusCodes } = require('http-status-codes');
+
+const info = (req, res) => {
+    return res.status(StatusCodes.OK).send("api is alive");
+};
+
+module.exports = {
     info
-}
+};

@@ -1,5 +1,7 @@
-const {info}=require('./infocontroller');
-module.exports=
-{
-    infocontroller:info
-}
+const { info } = require('./infocontroller');
+const { createairplane } = require('./airplanecontroller');
+
+module.exports = {
+    info,
+    createairplane
+};
