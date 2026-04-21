@@ -1,7 +1,7 @@
-const CrudRepository = require('../repositories/crudrepo');
-const AirplaneRepository = require('../repositories/airplanerepo');
-const { Airplane } = require('../models');
-
+const CrudRepository = require('../repositories/crudrepository');
+const AirplaneRepository = require('../repositories/airplanerepository');
+const Apperror=require('../utils/errors');
+const { StatusCodes } = require('http-status-codes');
 const airplaneRepo = new AirplaneRepository();
 
 async function createairplane(data) {
@@ -9,7 +9,7 @@ async function createairplane(data) {
         const airplane = await airplaneRepo.create(data);
         return airplane;
     } catch (error) {
-        throw error;
+        throw new Apperror('Some mistake in crud repo',StatusCodes.INTERNAL_SERVER_ERROR);
     }
 }
 
