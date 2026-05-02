@@ -9,7 +9,7 @@ class crudrepo{
         return response;
     }
     async destroy(data){
-            const reponse = await this.model.destroy({
+            const response = await this.model.destroy({
                 where: {
                     id:data
                 }
