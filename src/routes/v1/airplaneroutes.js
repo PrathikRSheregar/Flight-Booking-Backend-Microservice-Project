@@ -5,5 +5,5 @@ const { validateCreateRequest } = require('../../middlewares/airplanemiddlewares
 const router = express.Router();
 
 router.post('/', airplanemiddlewares.validateCreateRequest,airplanecontroller.createairplane);
-
+router.get('/',airplanecontroller.getAirplanes);
 module.exports = router;

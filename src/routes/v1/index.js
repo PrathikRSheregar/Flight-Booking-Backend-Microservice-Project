@@ -6,5 +6,5 @@ const infoRoutes = require('./info');
 
 router.use('/airplane', airplaneRoutes);
 router.use('/info', infoRoutes);
-
+router.use('/airplanes',airplaneRoutes);
 module.exports = router;

@@ -3,6 +3,7 @@ class Apperror extends Error{
     {
         super(message);
         this.statuscode=statuscode;
+        this.explanation=message;
     }
 }
 module.exports=Apperror;

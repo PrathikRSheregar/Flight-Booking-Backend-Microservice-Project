@@ -17,6 +17,23 @@ async function createairplane(req, res) {
 
     } catch (error) {
         ErrorResponse.error=error;
+        ErrorResponse.message=error.message;
+        return res
+        .status(error.statuscode)
+        .json(ErrorResponse);
+    }
+}
+async function getAirplanes(req,res){
+    try{
+        const airplanes=await airplaneService.getAirplanes();
+        SuccessResponse.message='Successfully fetch all airplanes';
+        SuccessResponse.data=airplanes;
+        return res
+            .status(StatusCodes.OK)
+            .json(SuccessResponse);
+    }catch(error){
+        ErrorResponse.error=error;
+        ErrorResponse.message=error.message;
         return res
         .status(error.statuscode)
         .json(ErrorResponse);
@@ -24,5 +41,6 @@ async function createairplane(req, res) {
 }
 
 module.exports = {
-    createairplane
+    createairplane,
+    getAirplanes
 };
