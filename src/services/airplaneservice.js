@@ -33,6 +33,17 @@ async function getAirplane(id){
         throw new Apperror('Cannot fetch  data of the airplane',StatusCodes.INTERNAL_SERVER_ERROR);
     }
 }
+async function updateAirplane(id,data){
+    try { 
+        const updated_airplane = await airplaneRepository.update(id,data);
+        if(updated_airplane[0] === 0) throw new Apperror('Cannot update airplane of given id',StatusCodes.NOT_FOUND);
+        return updated_airplane;
+    } catch (error) {
+        if(error instanceof Apperror)
+            throw error;
+        throw new Apperror('Some mistake in crud repo',StatusCodes.INTERNAL_SERVER_ERROR);
+    }
+}
 
 async function destroyAirplane(id){
     try{
@@ -49,5 +60,6 @@ module.exports = {
     createairplane,
     getAirplanes,
     getAirplane,
+    updateAirplane,
     destroyAirplane
 };
