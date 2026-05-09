@@ -1,6 +1,6 @@
 const error={
     success:true,
-    message:"Successfully executed",
+    message:'Successfully executed',
     data:{},
     error:{}
 }

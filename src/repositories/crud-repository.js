@@ -1,5 +1,5 @@
 const logger=require('../config')
-class crudrepo{
+class CrudRepository{
     constructor(model)
     {
         this.model=model;
@@ -35,4 +35,4 @@ class crudrepo{
     }
 
 }
-module.exports=crudrepo
+module.exports=CrudRepository;

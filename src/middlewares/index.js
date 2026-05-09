@@ -1,3 +1,3 @@
 module.exports={
-    airplanemiddlewares:require('./airplanemiddlewares')
+    airplaneMiddlewares:require('./airplane-middlewares')
 }

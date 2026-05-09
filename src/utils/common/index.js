@@ -1,6 +1,6 @@
-const ErrorResponse=require('./error-response');
-const SuccessResponse=require('./success-response');
+const errorResponse=require('./error-response');
+const successResponse=require('./success-response');
 module.exports={
-    ErrorResponse,
-    SuccessResponse
+    errorResponse,
+    successResponse
 }

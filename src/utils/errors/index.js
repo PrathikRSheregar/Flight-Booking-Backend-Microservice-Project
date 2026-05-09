@@ -1,3 +1,2 @@
-const Apperror = require("./App-error");
-
-module.exports=Apperror;
+const AppError = require('./App-error');
+module.exports=AppError;
