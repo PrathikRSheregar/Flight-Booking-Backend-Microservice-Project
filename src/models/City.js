@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
         onDelete:'CASCADE',
         onUpdate:'CASCADE'
       });
-    }
+    };
   }
   City.init({
     name:{
@@ -27,7 +27,6 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'City',
-    tableName: 'City' 
   });
   return City;
 };
