@@ -17,7 +17,7 @@ async function createCity(req, res) {
     } catch (error) {
         errorResponse.error=error;
         return res
-        .status(error.statuscode)
+        .status(error.statusCode)
         .json(errorResponse);
     }
 }
@@ -34,7 +34,7 @@ async function updateCity(req,res) {
     }catch(error){
         errorResponse.error=error;
         return res
-        .status(error.statuscode || 500)
+        .status(error.statusCode || 500)
         .json(errorResponse);
     } 
 }
@@ -49,7 +49,7 @@ async function destroyCity(req,res){
     }catch(error){
         errorResponse.error=error;
         return res
-        .status(error.statuscode || 500)
+        .status(error.statusCode || 500)
         .json(errorResponse);
     }
 }
