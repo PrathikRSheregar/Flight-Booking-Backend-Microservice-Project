@@ -1,0 +1,74 @@
+const { errorResponse } = require('../utils/common');
+
+const StatusCodes=require('http-status-codes');
+
+function validateCreateRequest(req,res,next){
+    if(!req.body.flightnumber)
+    {
+    errorResponse.message='Something went wrong while creating airplane';
+    errorResponse.error=['flightnumber not found on the incoming request'];
+    res
+        .status(StatusCodes.BAD_REQUEST)
+        .json(errorResponse)
+    }
+    if(!req.body.airplaneId)
+    {
+    errorResponse.message='Something went wrong while creating airplane';
+    errorResponse.error=['airplaneId not found on the incoming request'];
+    res
+        .status(StatusCodes.BAD_REQUEST)
+        .json(errorResponse)
+    }
+    if(!req.body.departureAirportId)
+    {
+    errorResponse.message='Something went wrong while creating airplane';
+    errorResponse.error=['depatureAirportId not found on the incoming request'];
+    res
+        .status(StatusCodes.BAD_REQUEST)
+        .json(errorResponse)
+    }
+    if(!req.body.arrivalAirportId)
+    {
+    errorResponse.message='Something went wrong while creating airplane';
+    errorResponse.error=['arrivalAirportId not found on the incoming request'];
+    res
+        .status(StatusCodes.BAD_REQUEST)
+        .json(errorResponse)
+    }
+    if(!req.body.departureTime)
+    {
+    errorResponse.message='Something went wrong while creating airplane';
+    errorResponse.error=['depatureTime not found on the incoming request'];
+    res
+        .status(StatusCodes.BAD_REQUEST)
+        .json(errorResponse)
+    }
+    if(!req.body.arrivalTime)
+    {
+    errorResponse.message='Something went wrong while creating airplane';
+    errorResponse.error=['arrivalTime not found on the incoming request'];
+    res
+        .status(StatusCodes.BAD_REQUEST)
+        .json(errorResponse)
+    }
+    if(!req.body.price)
+    {
+    errorResponse.message='Something went wrong while creating airplane';
+    errorResponse.error=['price not found on the incoming request'];
+    res
+        .status(StatusCodes.BAD_REQUEST)
+        .json(errorResponse)
+    }
+    if(!req.body.remainingSeats)
+    {
+    errorResponse.message='Something went wrong while creating airplane';
+    errorResponse.error=['remainingSeats not found on the incoming request'];
+    res
+        .status(StatusCodes.BAD_REQUEST)
+        .json(errorResponse)
+    }
+ next();
+}
+module.exports={
+    validateCreateRequest
+};

@@ -9,6 +9,7 @@ async function createAirplane(data) {
         const airplane = await airplaneRepo.create(data);
         return airplane;
     } catch (error) {
+        console.log(error);
         throw new AppError('Some mistake in crud repo',StatusCodes.INTERNAL_SERVER_ERROR);
     }
 }
