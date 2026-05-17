@@ -4,7 +4,7 @@ const { errorResponse, successResponse } = require('../utils/common');
 
 async function createFlight(req, res) {
     try {
-        const airplane = await flightService.createFlight({
+        const flight = await flightService.createFlight({
             flightnumber:req.body.flightnumber,
             airplaneId:req.body.airplaneId,
             departureAirportId:req.body.departureAirportId,
@@ -15,8 +15,8 @@ async function createFlight(req, res) {
             boardingGate:req.body.boardingGate,
             remainingSeats:req.body.remainingSeats
         });
-        successResponse.message='Successfully created an airplane';
-        successResponse.data=airplane;
+        successResponse.message='Successfully created an flight';
+        successResponse.data=flight;
 
         return res
             .status(StatusCodes.CREATED)
@@ -29,6 +29,24 @@ async function createFlight(req, res) {
         .json(errorResponse);
     }
 }
+async function getAllFlights(req,res){
+    try{
+        const flights=await flightService.getAllFlights(req.query)
+        successResponse.message='Successfully fetched all airplane';
+        successResponse.data=flights;
+
+        return res
+            .status(StatusCodes.OK)
+            .json(successResponse);
+
+    }catch(error){
+        errorResponse.error=error;
+        return res
+        .status(error.statusCode)
+        .json(errorResponse);
+    }
+}
 module.exports = {
-    createFlight
+    createFlight,
+    getAllFlights
 };
