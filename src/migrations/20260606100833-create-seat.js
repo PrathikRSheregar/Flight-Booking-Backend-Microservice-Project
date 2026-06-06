@@ -14,8 +14,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull:false,
         references:{
-          model:'Airplane',
-          key:'id'
+          model:'airplanes'
         },
         onDelete:'CASCADE'
       },
@@ -28,8 +27,8 @@ module.exports = {
         allowNull:false
       },
       class: {
-        type: Sequelize.STRING,
-        values:Objects.values(Enums.SEAT_TYPE),
+        type: Sequelize.ENUM,
+        values:Object.values(Enums.SEAT_TYPE),
         defaultValue:'economy',
         allowNull:false
       },
