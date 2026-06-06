@@ -34,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     class:{
       type:DataTypes.ENUM,
-      values:Objects.values(Enums.SEAT_TYPE),
+      values:Object.values(Enums.SEAT_TYPE),
       defaultValue:'economy',
       allowNull:false
     }
