@@ -2,7 +2,6 @@ const { errorResponse } = require('../utils/common');
 
 const StatusCodes=require('http-status-codes');
 const compareTime=require('../utils/helper');
-const { error } = require('cli');
 function validateCreateRequest(req,res,next){
     if(!req.body.flightnumber)
     {
