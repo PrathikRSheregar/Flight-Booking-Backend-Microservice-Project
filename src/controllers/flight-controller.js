@@ -25,7 +25,7 @@ async function createFlight(req, res) {
     } catch (error) {
         errorResponse.error=error;
         return res
-        .status(error.statusCode)
+        .status(error.StatusCodes)
         .json(errorResponse);
     }
 }
@@ -42,11 +42,52 @@ async function getAllFlights(req,res){
     }catch(error){
         errorResponse.error=error;
         return res
-        .status(error.statusCode)
+        .status(error.StatusCodes)
+        .json(errorResponse);
+    }
+}
+
+async function getFlight(req,res){
+    try{
+        const flights=await flightService.getFlight(req.params.id);
+        successResponse.message='Successfully fetched all airplane';
+        successResponse.data=flights;
+        return res
+            .status(StatusCodes.OK)
+            .json(successResponse);
+
+    }catch(error){
+        errorResponse.error=error;
+        return res
+        .status(error.StatusCodes ||  StatusCodes.INTERNAL_SERVER_ERROR)
+        .json(errorResponse);
+    }
+}
+
+async function updateSeats(req,res){
+    try{
+        console.log("params:", req.params);
+        console.log("id:", req.params.id);
+        const response=await flightService.updateSeats({
+            flightId:req.params.id,
+            seats:req.body.seats,
+            dec:req.body.dec
+        });
+        successResponse.message='Successfully fetched all airplane';
+        successResponse.data=response;
+        return res
+            .status(StatusCodes.OK)
+            .json(successResponse);
+    }catch(error){
+        errorResponse.error=error;
+        return res
+        .status(error.StatusCodes ||  StatusCodes.INTERNAL_SERVER_ERROR)
         .json(errorResponse);
     }
 }
 module.exports = {
     createFlight,
-    getAllFlights
+    getAllFlights,
+    getFlight,
+    updateSeats
 };

@@ -60,8 +60,7 @@ module.exports = (sequelize, DataTypes) => {
       type:DataTypes.STRING,
     },
     remainingSeats: {
-      type:DataTypes.INTEGER,
-      allowNull:false
+      type:DataTypes.INTEGER
     },
   }, {
     sequelize,
