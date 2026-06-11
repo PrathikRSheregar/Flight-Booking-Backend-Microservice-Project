@@ -65,24 +65,25 @@ async function getFlight(req,res){
 }
 
 async function updateSeats(req,res){
+
     try{
-        console.log("params:", req.params);
-        console.log("id:", req.params.id);
-        const response=await flightService.updateSeats({
+        const response =await flightService.updateSeats({
             flightId:req.params.id,
             seats:req.body.seats,
             dec:req.body.dec
         });
-        successResponse.message='Successfully fetched all airplane';
-        successResponse.data=response;
-        return res
-            .status(StatusCodes.OK)
-            .json(successResponse);
+
+        return res.status(200).json({
+            success:true,
+            data:response
+        });
+
     }catch(error){
-        errorResponse.error=error;
-        return res
-        .status(error.StatusCodes ||  StatusCodes.INTERNAL_SERVER_ERROR)
-        .json(errorResponse);
+
+        return res.status(400).json({
+            success:false,
+            message:error.message
+        });
     }
 }
 module.exports = {

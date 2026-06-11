@@ -2,7 +2,6 @@ const CrudRepository = require('./crud-repository');
 const { Flight,Airport,City,Airplane } = require('../models');
 const {Sequelize, where} = require('sequelize');
 const db=require('../models');
-const {addRowLockOnFlights} = require('./queries');
 class FlightRepository extends CrudRepository {
     constructor() {
         super(Flight);
@@ -40,42 +39,57 @@ class FlightRepository extends CrudRepository {
     return flights;
     }
     async updateRemainingSeats(flightId, seats, dec = true) {
-    const transaction = await db.sequelize.transaction();
 
+    const transaction = await db.sequelize.transaction({
+        isolationLevel:
+        db.Sequelize.Transaction.ISOLATION_LEVELS.SERIALIZABLE
+    });
+    console.log("flightId:", flightId);
     try {
-        await db.sequelize.query(
-            addRowLockOnFlights(flightId),
-            { transaction }
+
+        const flight = await Flight.findByPk(
+            flightId,
+            {
+                transaction,
+                lock: transaction.LOCK.UPDATE
+            }
         );
 
-        if (dec === 'true') {
-            await Flight.decrement('remainingSeats', {
-                by: seats,
-                where: {
-                    id: flightId
-                },
-                transaction
-            });
-        } else {
-            await Flight.increment('remainingSeats', {
-                by: seats,
-                where: {
-                    id: flightId
-                },
-                transaction
-            });
+        if (!flight) {
+            throw new Error('Flight not found');
         }
 
-        const updatedFlight = await Flight.findByPk(
-            flightId,
-            { transaction }
-        );
+        if (dec) {
+
+            if (flight.remainingSeats < seats) {
+                throw new Error('Not enough seats available');
+            }
+
+            await flight.decrement(
+                'remainingSeats',
+                {
+                    by: seats,
+                    transaction
+                }
+            );
+
+        } else {
+
+            await flight.increment(
+                'remainingSeats',
+                {
+                    by: seats,
+                    transaction
+                }
+            );
+        }
 
         await transaction.commit();
 
-        return updatedFlight;
+        return await Flight.findByPk(flightId);
 
     } catch (error) {
+        console.log(error);
         await transaction.rollback();
         throw error;
     }
