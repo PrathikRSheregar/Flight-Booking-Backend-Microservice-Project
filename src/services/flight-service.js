@@ -80,6 +80,7 @@ async function updateSeats(data){
         throw new AppError('Cannot update data of the flight',StatusCodes.INTERNAL_SERVER_ERROR);
     }
 }
+
 module.exports = {
     createFlight,
     getAllFlights,

@@ -44,9 +44,7 @@ class FlightRepository extends CrudRepository {
         isolationLevel:
         db.Sequelize.Transaction.ISOLATION_LEVELS.SERIALIZABLE
     });
-    console.log("flightId:", flightId);
     try {
-
         const flight = await Flight.findByPk(
             flightId,
             {
@@ -89,7 +87,6 @@ class FlightRepository extends CrudRepository {
         return await Flight.findByPk(flightId);
 
     } catch (error) {
-        console.log(error);
         await transaction.rollback();
         throw error;
     }
