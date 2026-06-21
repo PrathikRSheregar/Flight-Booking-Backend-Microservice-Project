@@ -7,8 +7,7 @@ router.post('/',authRequestMiddlewares.isFlightCompanyOrAdmin,flightMiddlewares.
 router.get('/', flightController.getAllFlights);
 router.get('/:id', flightController.getFlight);
 router.patch(
-    '/:id/seats',
-    authRequestMiddlewares.isFlightCompanyOrAdmin,flightMiddlewares.validateUpdateSeatsRequest,
+    '/:id/seats',flightMiddlewares.validateUpdateSeatsRequest,
     flightController.updateSeats
 );
 module.exports = router;
